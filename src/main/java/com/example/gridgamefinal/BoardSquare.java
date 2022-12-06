@@ -10,14 +10,14 @@ public class BoardSquare {
     private Image image;
     private int power;
 
-    private int ownner;
+    private int owner;
     public BoardSquare(int row, int column, String n, Image img,int own,int p){
         name = n;
         loc = new Location(row,column);
         image = img;
         //0,1,2  2=unowned
-        ownner = own;
-        power =p;
+        owner = own;
+        power = p;
     }
 
     public int getPower() {
