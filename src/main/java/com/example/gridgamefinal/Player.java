@@ -6,9 +6,11 @@ public class Player {
     private String name;
     private ArrayList<BoardSquare> owned = new ArrayList<>();
 
+//    private ArrayList<BoardSquare> pieces = new ArrayList<>();
+
     public Player(String n){
         name = n;
-
+//        pieces = p;
     }
     public void removeFromOwned(BoardSquare r){
         owned.remove(r);

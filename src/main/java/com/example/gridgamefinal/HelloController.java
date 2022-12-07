@@ -73,27 +73,40 @@ public class HelloController {
         }
 
 
+
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 board[i][j] = new BoardSquare(i,j,boardSquareNames[0],red,0,2);
             }
         }
+        board[0][5] = new BoardSquare(0,5,boardSquareNames[0],red,0,2);
+        board[0][6] = new BoardSquare(0,6,boardSquareNames[0],red,0,2);
+        board[1][5] = new BoardSquare(1,5,boardSquareNames[0],red,0,2);
+        board[1][6] = new BoardSquare(1,6,boardSquareNames[0],red,0,2);
+        board[2][5] = new BoardSquare(2,5,boardSquareNames[0],red,0,2);
+
+        board[5][0] = new BoardSquare(5,0,boardSquareNames[0],red,0,2);
+        board[5][1] = new BoardSquare(5,1,boardSquareNames[0],red,0,2);
+        board[5][2] = new BoardSquare(5,2,boardSquareNames[0],red,0,2);
+        board[6][0] = new BoardSquare(6,0,boardSquareNames[0],red,0,2);
+        board[6][1] = new BoardSquare(6,1,boardSquareNames[0],red,0,2);
+
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(i,14-j,boardSquareNames[1],orange,0,2);
+                board[i][14-j] = new BoardSquare(i,14-j,boardSquareNames[1],orange,0,2);
             }
         }
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(14-i,j,boardSquareNames[2],dblue,0,2);
+                board[14-i][j] = new BoardSquare(14-i,j,boardSquareNames[2],dblue,0,2);
             }
         }
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(14-i,14-j,boardSquareNames[3],purple,0,2);
+                board[14-i][14-j] = new BoardSquare(14-i,14-j,boardSquareNames[3],purple,0,2);
             }
         }
         //board pieces
@@ -355,13 +368,14 @@ public class HelloController {
         boardImages[14][8]=b1408;
         boardImages[14][9]=b1409;
         boardImages[14][10]=b1410;
-        boardImages[12][11]=b1411;
+        boardImages[14][11]=b1411;
         boardImages[14][12]=b1412;
         boardImages[14][13]=b1413;
         boardImages[14][14]=b1414;
 
         for (int i = 0; i <boardImages.length; i++) {
             for (int j = 0; j < boardImages.length; j++) {
+                System.out.println(i + ", " + j);
                 boardImages[i][j].setImage(board[i][j].getImage());
             }
         }
