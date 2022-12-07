@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.DoubleToIntFunction;
 
 public class HelloController {
@@ -24,11 +25,15 @@ public class HelloController {
     private BoardSquare[][] board = new BoardSquare[15][15];
     private ImageView[][] boardImages = new ImageView[15][15];
 
+    private BoardPiece airbase,fighter,bomber,samSilo,nuke,radar,fleet,battleship,carrier,sub;
+
+    private ArrayList<BoardPiece> startingPieces = new ArrayList<>(Arrays.asList(airbase,airbase,airbase,fighter,fighter,fighter,bomber,bomber,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,radar,radar,radar,radar,radar,radar,radar,radar,fleet,fleet,fleet,fleet,battleship,carrier,sub));
+
     @FXML
     private ImageView b0000, b0001, b0002, b0003, b0004, b0005, b0006, b0007, b0008, b0009, b0010, b0011, b0012, b0013, b0014, b0100, b0101, b0102, b0103, b0104, b0105, b0106, b0107, b0108, b0109, b0110, b0111, b0112, b0113, b0114, b0200, b0201, b0202, b0203, b0204, b0205, b0206, b0207, b0208, b0209, b0210, b0211, b0212, b0213, b0214, b0300, b0301, b0302, b0303, b0304, b0305, b0306, b0307, b0308, b0309, b0310, b0311, b0312, b0313, b0314, b0400, b0401, b0402, b0403, b0404, b0405, b0406, b0407, b0408, b0409, b0410, b0411, b0412, b0413, b0414, b0500, b0501, b0502, b0503, b0504, b0505, b0506, b0507, b0508, b0509, b0510, b0511, b0512, b0513, b0514, b0600, b0601, b0602, b0603, b0604, b0605, b0606, b0607, b0608, b0609, b0610, b0611, b0612, b0613, b0614, b0700, b0701, b0702, b0703, b0704, b0705, b0706, b0707, b0708, b0709, b0710, b0711, b0712, b0713, b0714, b0800, b0801, b0802, b0803, b0804, b0805, b0806, b0807, b0808, b0809, b0810, b0811, b0812, b0813, b0814, b0900, b0901, b0902, b0903, b0904, b0905, b0906, b0907, b0908, b0909, b0910, b0911, b0912, b0913, b0914, b1000, b1001, b1002, b1003, b1004, b1005, b1006, b1007, b1008, b1009, b1010, b1011, b1012, b1013, b1014, b1100, b1101, b1102, b1103, b1104, b1105, b1106, b1107, b1108, b1109, b1110, b1111, b1112, b1113, b1114, b1200, b1201, b1202, b1203, b1204, b1205, b1206, b1207, b1208, b1209, b1210, b1211, b1212, b1213, b1214, b1300, b1301, b1302, b1303, b1304, b1305, b1306, b1307, b1308, b1309, b1310, b1311, b1312, b1313, b1314, b1400, b1401, b1402, b1403, b1404, b1405, b1406, b1407, b1408, b1409, b1410, b1411, b1412, b1413, b1414;
     private String[] boardSquareNames = {"b1", "b2", "b3", "b4", "r1", "r2", "r3", "r4","unowned"};
-    private  int playerTurn=0;
-    Image red,orange,purple,dblue,lblue,airbase,fighter,bomber,sam,silo,nuke,radar,fleet,battleship,carrier,sub;
+    private int playerTurn=0;
+    Image red,orange,purple,dblue,lblue,airbasePic,fighterPic,bomberPic,samPic,siloPic,nukePic,radarPic,fleetPic,battleshipPic,carrierPic,subPic;
     public HelloController(){
         FileInputStream redd,orangee,purplee,dbluee,lbluee,airbasee,fighterr,bomberr,samm,siloo,nukee,radarr,fleett,battleshipp,carrierr,subb;
         try {
@@ -45,57 +50,112 @@ public class HelloController {
 
 
             airbasee = new FileInputStream("src/main/Pictures/Airbase.png");
-            airbase = new Image(airbasee);
+            airbasePic = new Image(airbasee);
             fighterr = new FileInputStream("src/main/Pictures/Fighter.png");
-            fighter = new Image(fighterr);
+            fighterPic = new Image(fighterr);
             bomberr = new FileInputStream("src/main/Pictures/Bomber.png");
-            bomber = new Image(bomberr);
+            bomberPic = new Image(bomberr);
 
             samm = new FileInputStream("src/main/Pictures/Sam.png");
-            sam = new Image(samm);
+            samPic = new Image(samm);
             siloo = new FileInputStream("src/main/Pictures/Silo.png");
-            silo = new Image(siloo);
+            siloPic = new Image(siloo);
             nukee = new FileInputStream("src/main/Pictures/Nuke.png");
-            nuke = new Image(nukee);
+            nukePic = new Image(nukee);
             radarr = new FileInputStream("src/main/Pictures/Radar.png");
-            radar = new Image(radarr);
+            radarPic = new Image(radarr);
 
             fleett = new FileInputStream("src/main/Pictures/Fleet.png");
-            fleet = new Image(fleett);
+            fleetPic = new Image(fleett);
             battleshipp = new FileInputStream("src/main/Pictures/Battleship.png");
-            battleship = new Image(battleshipp);
+            battleshipPic = new Image(battleshipp);
             carrierr = new FileInputStream("src/main/Pictures/Carrier.png");
-            carrier = new Image(carrierr);
+            carrierPic = new Image(carrierr);
             subb = new FileInputStream("src/main/Pictures/Sub.png");
-            sub = new Image(subb);
+            subPic = new Image(subb);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
+        airbase = new BoardPiece("airbase", airbasePic, 2);
+        fighter = new BoardPiece("fighter", fighterPic, 2);
+        bomber = new BoardPiece("bomber", bomberPic, 2);
+        samSilo = new BoardPiece("sam", samPic, siloPic, 2);
+        nuke = new BoardPiece("nuke", nukePic, 2);
+        radar = new BoardPiece("radar", radarPic, 2);
+        fleet = new BoardPiece("fleet", fleetPic, 2);
+        battleship = new BoardPiece("battleship", battleshipPic, 2);
+        carrier = new BoardPiece("carrier", carrierPic, 2);
+        sub = new BoardPiece("sub", subPic, 2);
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 board[i][j] = new BoardSquare(i,j,boardSquareNames[0],red,0,2);
             }
         }
+        board[0][5] = new BoardSquare(0,5,boardSquareNames[0],red,0,2);
+        board[0][6] = new BoardSquare(0,6,boardSquareNames[0],red,0,2);
+        board[1][5] = new BoardSquare(1,5,boardSquareNames[0],red,0,2);
+        board[1][6] = new BoardSquare(1,6,boardSquareNames[0],red,0,2);
+        board[2][5] = new BoardSquare(2,5,boardSquareNames[0],red,0,2);
+
+        board[5][0] = new BoardSquare(5,0,boardSquareNames[0],red,0,2);
+        board[5][1] = new BoardSquare(5,1,boardSquareNames[0],red,0,2);
+        board[5][2] = new BoardSquare(5,2,boardSquareNames[0],red,0,2);
+        board[6][0] = new BoardSquare(6,0,boardSquareNames[0],red,0,2);
+        board[6][1] = new BoardSquare(6,1,boardSquareNames[0],red,0,2);
+
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(i,14-j,boardSquareNames[1],orange,0,2);
+                board[i][14-j] = new BoardSquare(i,14-j,boardSquareNames[1],orange,0,2);
             }
         }
+        board[2][9] = new BoardSquare(2,9,boardSquareNames[1],orange,0,2);
+        board[3][8] = new BoardSquare(3,8,boardSquareNames[1],orange,0,2);
+        board[3][9] = new BoardSquare(3,9,boardSquareNames[1],orange,0,2);
+        board[4][8] = new BoardSquare(4,8,boardSquareNames[1],orange,0,2);
+        board[4][9] = new BoardSquare(4,9,boardSquareNames[1],orange,0,2);
+
+        board[5][11] = new BoardSquare(5,11,boardSquareNames[1],orange,0,2);
+        board[5][12] = new BoardSquare(5,12,boardSquareNames[1],orange,0,2);
+        board[5][13] = new BoardSquare(5,13,boardSquareNames[1],orange,0,2);
+        board[5][14] = new BoardSquare(5,14,boardSquareNames[1],orange,0,2);
+        board[6][14] = new BoardSquare(6,14,boardSquareNames[1],orange,0,2);
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(14-i,j,boardSquareNames[2],dblue,0,2);
+                board[14-i][j] = new BoardSquare(14-i,j,boardSquareNames[2],dblue,0,2);
             }
         }
+        board[8][4] = new BoardSquare(8,4,boardSquareNames[2],dblue,0,2);
+        board[9][3] = new BoardSquare(9,3,boardSquareNames[2],dblue,0,2);
+        board[9][4] = new BoardSquare(9,4,boardSquareNames[2],dblue,0,2);
+        board[9][5] = new BoardSquare(9,5,boardSquareNames[2],dblue,0,2);
+        board[10][5] = new BoardSquare(10,5,boardSquareNames[2],dblue,0,2);
+
+        board[12][6] = new BoardSquare(12,6,boardSquareNames[2],dblue,0,2);
+        board[13][5] = new BoardSquare(13,5,boardSquareNames[2],dblue,0,2);
+        board[13][6] = new BoardSquare(13,6,boardSquareNames[2],dblue,0,2);
+        board[14][5] = new BoardSquare(14,5,boardSquareNames[2],dblue,0,2);
+        board[14][6] = new BoardSquare(14,6,boardSquareNames[2],dblue,0,2);
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][j] = new BoardSquare(14-i,14-j,boardSquareNames[3],purple,0,2);
+                board[14-i][14-j] = new BoardSquare(14-i,14-j,boardSquareNames[3],purple,0,2);
             }
         }
+        board[8][12] = new BoardSquare(8,12,boardSquareNames[3],purple,0,2);
+        board[9][9] = new BoardSquare(9,9,boardSquareNames[3],purple,0,2);
+        board[9][12] = new BoardSquare(9,12,boardSquareNames[3],purple,0,2);
+        board[9][13] = new BoardSquare(9,13,boardSquareNames[3],purple,0,2);
+        board[9][14] = new BoardSquare(9,14,boardSquareNames[3],purple,0,2);
+
+        board[10][8] = new BoardSquare(10,8,boardSquareNames[3],purple,0,2);
+        board[10][9] = new BoardSquare(10,9,boardSquareNames[3],purple,0,2);
+        board[11][8] = new BoardSquare(11,8,boardSquareNames[3],purple,0,2);
+        board[11][9] = new BoardSquare(11,9,boardSquareNames[3],purple,0,2);
+        board[12][9] = new BoardSquare(12,9,boardSquareNames[3],purple,0,2);
         //board pieces
 
         for (int i = 0; i < 15; i++) {
@@ -106,8 +166,8 @@ public class HelloController {
 
             }
         }
-        currentPlayers.add(new Player("player 1"));
-        currentPlayers.add(new Player("Player 2"));
+        currentPlayers.add(new Player("player 1", startingPieces));
+        currentPlayers.add(new Player("Player 2", startingPieces));
         for (int i = 0; i < 4; i++) {
             currentPlayers.get(0).setOwned(board[0][i]);
         }
@@ -355,13 +415,14 @@ public class HelloController {
         boardImages[14][8]=b1408;
         boardImages[14][9]=b1409;
         boardImages[14][10]=b1410;
-        boardImages[12][11]=b1411;
+        boardImages[14][11]=b1411;
         boardImages[14][12]=b1412;
         boardImages[14][13]=b1413;
         boardImages[14][14]=b1414;
 
         for (int i = 0; i <boardImages.length; i++) {
             for (int j = 0; j < boardImages.length; j++) {
+                System.out.println(i + ", " + j);
                 boardImages[i][j].setImage(board[i][j].getImage());
             }
         }
