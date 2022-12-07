@@ -27,6 +27,7 @@ public class HelloController {
 
     private BoardPiece airbase,fighter,bomber,samSilo,nuke,radar,fleet,battleship,carrier,sub;
 
+    //startingPieces dont include nukes
     private ArrayList<BoardPiece> startingPieces = new ArrayList<>(Arrays.asList(airbase,airbase,airbase,fighter,fighter,fighter,bomber,bomber,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,samSilo,radar,radar,radar,radar,radar,radar,radar,radar,fleet,fleet,fleet,fleet,battleship,carrier,sub));
 
     @FXML
@@ -87,6 +88,7 @@ public class HelloController {
         battleship = new BoardPiece("battleship", battleshipPic, 2);
         carrier = new BoardPiece("carrier", carrierPic, 2);
         sub = new BoardPiece("sub", subPic, 2);
+
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
