@@ -3,6 +3,7 @@ package com.example.gridgamefinal;
 public class Location {
     private int row;
     private int column;
+
     public Location(int r, int c){
         row = r;
         column = c;
@@ -22,4 +23,6 @@ public class Location {
     public void setRow(int row) {
         this.row = row;
     }
+
+    // done
 }

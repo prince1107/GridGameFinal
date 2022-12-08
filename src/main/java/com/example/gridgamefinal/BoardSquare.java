@@ -15,7 +15,7 @@ public class BoardSquare {
         name = n;
         loc = new Location(row,column);
         image = img;
-        //0,1,2  2=unowned
+        //0,1,2  0=unowned
         owner = own;
         power = p;
     }

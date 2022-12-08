@@ -23,6 +23,10 @@ public class Player {
         return name;
     }
 
+    public ArrayList<BoardPiece> getPieces() {
+        return pieces;
+    }
+
     public  void changeLocation(int droll, String[] boardPieceNames, BoardSquare[][] board){
         //find number of board piece
 

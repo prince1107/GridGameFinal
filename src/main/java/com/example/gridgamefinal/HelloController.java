@@ -168,13 +168,16 @@ public class HelloController {
 
             }
         }
-        currentPlayers.add(new Player("player 1", startingPieces));
+        currentPlayers.add(new Player("Player 1", startingPieces));
         currentPlayers.add(new Player("Player 2", startingPieces));
-        for (int i = 0; i < 4; i++) {
-            currentPlayers.get(0).setOwned(board[0][i]);
-        }
-        for (int i = 0; i < 4; i++) {
-            currentPlayers.get(1).setOwned(board[3][i]);
+        currentPlayers.add(new Player("Player 3", startingPieces));
+        currentPlayers.add(new Player("Player 4", startingPieces));
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (board[i][j].getImage() == red)  {
+                    currentPlayers.get(1).setOwned(board[i][j]);
+                }
+            }
         }
 
 
@@ -429,6 +432,9 @@ public class HelloController {
             }
         }
 
+        for (BoardPiece piece: currentPlayers.get(0).getPieces()) {
+
+        }
     }
     ImageView firstClick;
     ImageView secondClick;

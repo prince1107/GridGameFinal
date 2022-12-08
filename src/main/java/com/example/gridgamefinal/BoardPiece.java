@@ -10,7 +10,7 @@ public class BoardPiece {
     public BoardPiece(String n, Image img,int own){
         name = n;
         image = img;
-        //0,1,2  2=unowned
+        //0,1,2,3,4  0=unowned
         owner = own;
     }
 
