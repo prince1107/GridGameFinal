@@ -5,29 +5,20 @@ import javafx.scene.image.Image;
 public class BoardPiece {
     private String name;
     private Image image;
-    private Image image2;
-    private int owner;
-    public BoardPiece(String n, Image img,int own){
-        name = n;
-        image = img;
-        //0,1,2,3,4  0=unowned
-        owner = own;
-    }
 
-    public BoardPiece(String n, Image img, Image img2, int own){
+    private int health;
+
+    private int power;
+    public BoardPiece(String n, Image img, int h, int p){
         name = n;
         image = img;
-        image2 = img2;
-        //0,1,2  2=unowned
-        owner = own;
+        health = h;
+        power = p;
     }
+//
 
     public Image getImage() {
         return image;
-    }
-
-    public Image getImage2() {
-        return image2;
     }
 
     public void setName(String name) {
@@ -38,7 +29,11 @@ public class BoardPiece {
         return name;
     }
 
-    public int getOwner() {
-        return owner;
+    public int getHealth() {
+        return health;
+    }
+
+    public int getPower() {
+        return power;
     }
 }

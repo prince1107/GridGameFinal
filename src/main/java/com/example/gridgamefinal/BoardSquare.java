@@ -8,24 +8,45 @@ public class BoardSquare {
     private String name;
     private Location loc;
     private Image image;
-    private int power;
 
+    private int health;
     private int owner;
-    public BoardSquare(int row, int column, String n, Image img,int own,int p){
+
+    private int population;
+
+    private BoardPiece piece;
+
+    private ArrayList<BoardPiece> troops = new ArrayList<>();
+    private Image image2;
+
+    public BoardSquare(int row, int column, String n, Image img,int own,int h){
         name = n;
         loc = new Location(row,column);
         image = img;
         //0,1,2  0=unowned
         owner = own;
-        power = p;
+        health = h;
+        population = 200;
     }
 
-    public int getPower() {
-        return power;
+    public BoardSquare(int row, int column, String n, Image img,int own,BoardPiece p){
+        name = n;
+        loc = new Location(row,column);
+        image = img;
+        //0,1,2  0=unowned
+        owner = own;
+        piece = p;
+        health = p.getHealth();
+        image2 = p.getImage();
+        population = 200;
     }
-    public void changeLocation(int r,int c){
-        loc.setRow(r);
-        loc.setColumn(c);
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void changeHealth(int health) {
+        this.health += health;
     }
 
     public Image getImage() {
@@ -34,6 +55,28 @@ public class BoardSquare {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public BoardPiece getPiece() {
+        return piece;
+    }
+
+    public Image getImage2() {
+        return image2;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void nullifyPiece() {
+        this.piece = null;
+        this.image2 = null;
+        this.health = -1;
     }
 
     public String getName() {
@@ -48,5 +91,28 @@ public class BoardSquare {
     }
     public  int getColLoc(){
         return loc.getColumn();
+    }
+
+    public void setPiece(BoardPiece piece) {
+        this.piece = piece;
+    }
+
+    public ArrayList<BoardPiece> getTroops() {
+        return troops;
+    }
+
+    public void setTroops(BoardPiece troop) {
+        this.troops.add(troop);
+    }
+    public void removeTroops(BoardPiece troop) {
+        this.troops.remove(troop);
+    }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
     }
 }

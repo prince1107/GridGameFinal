@@ -8,9 +8,11 @@ public class Player {
 
     private ArrayList<BoardPiece> pieces = new ArrayList<>();
 
-    public Player(String n, ArrayList p){
+    public Player(String n, ArrayList<BoardPiece> p){
         name = n;
-        pieces = p;
+        for (BoardPiece piece: p) {
+            pieces.add(piece);
+        }
     }
     public void removeFromOwned(BoardSquare r){
         owned.remove(r);
@@ -27,32 +29,11 @@ public class Player {
         return pieces;
     }
 
-    public  void changeLocation(int droll, String[] boardPieceNames, BoardSquare[][] board){
-        //find number of board piece
+    public ArrayList<BoardSquare> getOwned() {
+        return owned;
+    }
 
-//        currentPieceNumber=0;
-//        for (int i = 0; i < boardPieceNames.length; i++) {
-//            if (currentBoardPiece.getName().equals(boardPieceNames[i])) {
-//                currentPieceNumber=i;
-//            }
-//        }
-//        System.out.println("current piece # " + currentPieceNumber);
-//        if(currentPieceNumber+droll>boardPieceNames.length-1){
-//            currentPieceNumber = droll+currentPieceNumber- boardPieceNames.length;
-//        }else{
-//            currentPieceNumber+=droll;
-//        }
-//
-//        for (int i = 0; i < board.length; i++) {
-//            for (int j = 0; j < board[0].length; j++) {
-//                if (board[i][j].getName().equals(boardPieceNames[currentPieceNumber])){
-//
-//                    playerLoc.setRow(board[i][j].getRowLoc());
-//                    playerLoc.setColumn(board[i][j].getColLoc());
-//                    currentBoardPiece = board[i][j];
-//                }
-//            }
-//        }
-
+    public void removePieces(BoardPiece piece) {
+        pieces.remove(piece);
     }
 }
