@@ -275,7 +275,7 @@
             <ImageView fx:id="b1414" fitHeight="31.0" fitWidth="35.0" onMouseClicked="#handleClickImage" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.rowIndex="14" />
             </children>
         </GridPane>
-        <Button layoutX="396.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="63.0" prefWidth="183.0" text="start board" />
+        <Button fx:id="startButton" layoutX="396.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="63.0" prefWidth="183.0" text="start board" />
       <ListView fx:id="piecesView" layoutX="14.0" layoutY="209.0" onMouseClicked="#handlePlaceImage" prefHeight="200.0" prefWidth="200.0" />
       <ListView fx:id="squareInfoView" layoutX="779.0" layoutY="210.0" onMouseClicked="#handleGetInfo" prefHeight="200.0" prefWidth="200.0" />
       <Label fx:id="resultsLabel" alignment="CENTER" layoutX="341.0" layoutY="517.0" prefHeight="122.0" prefWidth="292.0" text="Results" textAlignment="CENTER" wrapText="true">
@@ -283,13 +283,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="788.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="63.0" prefWidth="183.0" text="Clear All Selections" />
+      <Button fx:id="clearButton" layoutX="788.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleClearSelection" prefHeight="63.0" prefWidth="183.0" text="Clear All Selections" />
       <Label fx:id="timerLabel" alignment="CENTER" layoutX="113.0" layoutY="38.0" prefHeight="43.0" prefWidth="253.0" text="Timer" textAlignment="CENTER" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="31.0" layoutY="124.0" mnemonicParsing="false" onAction="#turnChange" prefHeight="63.0" prefWidth="183.0" text="Turn++" />
+      <Button fx:id="turnButton" layoutX="31.0" layoutY="124.0" mnemonicParsing="false" onAction="#turnChange" prefHeight="63.0" prefWidth="183.0" text="Turn++" />
 
     </children>
 </AnchorPane>

@@ -3,6 +3,7 @@ package com.example.gridgamefinal;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
@@ -22,6 +23,9 @@ public class HelloController {
     public ListView squareInfoView;
     public Label resultsLabel;
     public Label timerLabel;
+    public Button startButton;
+    public Button clearButton;
+    public Button turnButton;
     @FXML
     GridPane gpane;
     private ArrayList<Player> currentPlayers = new ArrayList<>();
@@ -49,7 +53,7 @@ public class HelloController {
     boolean finished = false;
     Timer myTimer = new Timer();
 
-    private int time = 10;
+    private int time = 45;
     TimerTask myTimerTask = new TimerTask(){
         @Override
         public void run() {
@@ -57,31 +61,31 @@ public class HelloController {
                 Platform.runLater(new Runnable() {
                     @Override public void run() {
                         timerLabel.setText("DEFCON " + defconLevel + ": " + time/60 + " min, " + time%60 + " sec left");
+                        time--;
+                        if (time == 0){
+                            if (defconLevel == 1){
+                                defconLevel--;
+                                endGame();
+                            }
+                            if (defconLevel == 2){
+                                defconLevel--;
+                                time = 45;
+                            }
+                            if (defconLevel == 3){
+                                defconLevel--;
+                                time = 27;
+                            }
+                            if (defconLevel == 4){
+                                defconLevel--;
+                                time = 27;
+                            }
+                            if (defconLevel == 5){
+                                defconLevel--;
+                                time = 36;
+                            }
+                        }
                     }
                 });
-                time--;
-                if (time == 0){
-                    if (defconLevel == 1){
-                        defconLevel--;
-                        endGame();
-                    }
-                    if (defconLevel == 2){
-                        defconLevel--;
-                        time = 240;
-                    }
-                    if (defconLevel == 3){
-                        defconLevel--;
-                        time = 10;
-                    }
-                    if (defconLevel == 4){
-                        defconLevel--;
-                        time = 10;
-                    }
-                    if (defconLevel == 5){
-                        defconLevel--;
-                        time = 10;
-                    }
-                }
             }
         }
     };
@@ -189,54 +193,54 @@ public class HelloController {
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[i][14-j] = new BoardSquare(i,14-j,boardSquareNames[1],orange,2,-1);
+                board[i][14-j] = new BoardSquare(i,14-j,boardSquareNames[3],orange,4,-1);
             }
         }
-        board[2][9] = new BoardSquare(2,9,boardSquareNames[1],orange,2,-1);
-        board[3][8] = new BoardSquare(3,8,boardSquareNames[1],orange,2,-1);
-        board[3][9] = new BoardSquare(3,9,boardSquareNames[1],orange,2,-1);
-        board[4][8] = new BoardSquare(4,8,boardSquareNames[1],orange,2,-1);
-        board[4][9] = new BoardSquare(4,9,boardSquareNames[1],orange,2,-1);
+        board[2][9] = new BoardSquare(2,9,boardSquareNames[3],orange,4,-1);
+        board[3][8] = new BoardSquare(3,8,boardSquareNames[3],orange,4,-1);
+        board[3][9] = new BoardSquare(3,9,boardSquareNames[3],orange,4,-1);
+        board[4][8] = new BoardSquare(4,8,boardSquareNames[3],orange,4,-1);
+        board[4][9] = new BoardSquare(4,9,boardSquareNames[3],orange,4,-1);
 
-        board[5][11] = new BoardSquare(5,11,boardSquareNames[1],orange,2,-1);
-        board[5][12] = new BoardSquare(5,12,boardSquareNames[1],orange,2,-1);
-        board[5][13] = new BoardSquare(5,13,boardSquareNames[1],orange,2,-1);
-        board[5][14] = new BoardSquare(5,14,boardSquareNames[1],orange,2,-1);
-        board[6][14] = new BoardSquare(6,14,boardSquareNames[1],orange,2,-1);
+        board[5][11] = new BoardSquare(5,11,boardSquareNames[3],orange,4,-1);
+        board[5][12] = new BoardSquare(5,12,boardSquareNames[3],orange,4,-1);
+        board[5][13] = new BoardSquare(5,13,boardSquareNames[3],orange,4,-1);
+        board[5][14] = new BoardSquare(5,14,boardSquareNames[3],orange,4,-1);
+        board[6][14] = new BoardSquare(6,14,boardSquareNames[3],orange,4,-1);
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[14-i][j] = new BoardSquare(14-i,j,boardSquareNames[2],dblue,3,-1);
+                board[14-i][j] = new BoardSquare(14-i,j,boardSquareNames[1],dblue,2,-1);
             }
         }
-        board[8][4] = new BoardSquare(8,4,boardSquareNames[2],dblue,3,-1);
-        board[9][3] = new BoardSquare(9,3,boardSquareNames[2],dblue,3,-1);
-        board[9][4] = new BoardSquare(9,4,boardSquareNames[2],dblue,3,-1);
-        board[9][5] = new BoardSquare(9,5,boardSquareNames[2],dblue,3,-1);
-        board[10][5] = new BoardSquare(10,5,boardSquareNames[2],dblue,3,-1);
+        board[8][4] = new BoardSquare(8,4,boardSquareNames[1],dblue,2,-1);
+        board[9][3] = new BoardSquare(9,3,boardSquareNames[1],dblue,2,-1);
+        board[9][4] = new BoardSquare(9,4,boardSquareNames[1],dblue,2,-1);
+        board[9][5] = new BoardSquare(9,5,boardSquareNames[1],dblue,2,-1);
+        board[10][5] = new BoardSquare(10,5,boardSquareNames[1],dblue,2,-1);
 
-        board[12][6] = new BoardSquare(12,6,boardSquareNames[2],dblue,3,-1);
-        board[13][5] = new BoardSquare(13,5,boardSquareNames[2],dblue,3,-1);
-        board[13][6] = new BoardSquare(13,6,boardSquareNames[2],dblue,3,-1);
-        board[14][5] = new BoardSquare(14,5,boardSquareNames[2],dblue,3,-1);
-        board[14][6] = new BoardSquare(14,6,boardSquareNames[2],dblue,3,-1);
+        board[12][6] = new BoardSquare(12,6,boardSquareNames[1],dblue,2,-1);
+        board[13][5] = new BoardSquare(13,5,boardSquareNames[1],dblue,2,-1);
+        board[13][6] = new BoardSquare(13,6,boardSquareNames[1],dblue,2,-1);
+        board[14][5] = new BoardSquare(14,5,boardSquareNames[1],dblue,2,-1);
+        board[14][6] = new BoardSquare(14,6,boardSquareNames[1],dblue,2,-1);
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
-                board[14-i][14-j] = new BoardSquare(14-i,14-j,boardSquareNames[3],purple,4,-1);
+                board[14-i][14-j] = new BoardSquare(14-i,14-j,boardSquareNames[2],purple,3,-1);
             }
         }
-        board[8][12] = new BoardSquare(8,12,boardSquareNames[3],purple,4,-1);
-        board[9][9] = new BoardSquare(9,9,boardSquareNames[3],purple,4,-1);
-        board[9][12] = new BoardSquare(9,12,boardSquareNames[3],purple,4,-1);
-        board[9][13] = new BoardSquare(9,13,boardSquareNames[3],purple,4,-1);
-        board[9][14] = new BoardSquare(9,14,boardSquareNames[3],purple,4,-1);
+        board[8][12] = new BoardSquare(8,12,boardSquareNames[2],purple,3,-1);
+        board[9][9] = new BoardSquare(9,9,boardSquareNames[2],purple,3,-1);
+        board[9][12] = new BoardSquare(9,12,boardSquareNames[2],purple,3,-1);
+        board[9][13] = new BoardSquare(9,13,boardSquareNames[2],purple,3,-1);
+        board[9][14] = new BoardSquare(9,14,boardSquareNames[2],purple,3,-1);
 
-        board[10][8] = new BoardSquare(10,8,boardSquareNames[3],purple,4,-1);
-        board[10][9] = new BoardSquare(10,9,boardSquareNames[3],purple,4,-1);
-        board[11][8] = new BoardSquare(11,8,boardSquareNames[3],purple,4,-1);
-        board[11][9] = new BoardSquare(11,9,boardSquareNames[3],purple,4,-1);
-        board[12][9] = new BoardSquare(12,9,boardSquareNames[3],purple,4,-1);
+        board[10][8] = new BoardSquare(10,8,boardSquareNames[2],purple,3,-1);
+        board[10][9] = new BoardSquare(10,9,boardSquareNames[2],purple,3,-1);
+        board[11][8] = new BoardSquare(11,8,boardSquareNames[2],purple,3,-1);
+        board[11][9] = new BoardSquare(11,9,boardSquareNames[2],purple,3,-1);
+        board[12][9] = new BoardSquare(12,9,boardSquareNames[2],purple,3,-1);
         //board pieces
 
         for (int i = 0; i < 15; i++) {
@@ -247,10 +251,10 @@ public class HelloController {
 
             }
         }
-        currentPlayers.add(new Player("Player 1", startingPieces));
-        currentPlayers.add(new Player("Player 2", startingPieces));
-        currentPlayers.add(new Player("Player 3", startingPieces));
-        currentPlayers.add(new Player("Player 4", startingPieces));
+        currentPlayers.add(new Player("Player 1 (red)", startingPieces));
+        currentPlayers.add(new Player("Player 2 (darkblue)", startingPieces));
+        currentPlayers.add(new Player("Player 3 (purple)", startingPieces));
+        currentPlayers.add(new Player("Player 4 (orange)", startingPieces));
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 if (board[i][j].getImage() == red)  {
@@ -546,6 +550,7 @@ public class HelloController {
             } else {
                 checkResult();
             }
+            firstClick = null;
             selectedPiece2 = null;
             secondClick = null;
         } else if (selectedPiece != null){
@@ -589,28 +594,27 @@ public class HelloController {
     }
     public void checkResult() {
         if (selectedPiece2 != null) {
+            BoardSquare first = board[click1X][click1Y];
             BoardSquare second = board[click2X][click2Y];
             if (second.getHealth() == -1) {
                 if (selectedPiece2.getName().equals("fighter") || selectedPiece2.getName().equals("bomber")) {
                     if (board[click2X][click2Y].getImage() == lblue) {
                         board[click2X][click2Y] = new BoardSquare(click2X, click2Y, board[click2X][click2Y].getName(), board[click2X][click2Y].getImage(), playerTurn % 4 + 1, selectedPiece2);
-                        currentPlayers.get(playerTurn % 4).removePieces(selectedPiece2);
+                        first.removeTroops(selectedPiece2);
                     } else {
                         board[click2X][click2Y] = new BoardSquare(click2X, click2Y, board[click2X][click2Y].getName(), board[click2X][click2Y].getImage(), playerTurn % 4 + 1, selectedPiece2);
-                        currentPlayers.get(playerTurn % 4).removePieces(selectedPiece2);
+                        first.removeTroops(selectedPiece2);
                     }
                 }
                 if (selectedPiece2.getName().equals("nuke")) {
                     if (board[click2X][click2Y].getImage() == lblue) {
-                        resultsLabel.setText("You can't nuke water");
+                        resultsLabel.setText("You can't nuke from water");
                     } else{
-                        if (defconLevel >= 4) {
-                            if (Math.abs(click1X - click2X) == 1 || Math.abs(click1Y - click2Y) == 1) {
-                                attack(selectedPiece2, second);
-                            }
-                            currentPlayers.get(playerTurn % 4).removePieces(selectedPiece2);
+                        if (defconLevel <= 2) {
+                            board[click2X][click2Y] = new BoardSquare(click2X, click2Y, board[click2X][click2Y].getName(), board[click2X][click2Y].getImage(), playerTurn % 4 + 1, selectedPiece2);
+                            first.removeTroops(selectedPiece2);
                         } else {
-                            resultsLabel.setText("You can't nuke before DEFCON 4");
+                            resultsLabel.setText("You can't nuke before DEFCON 2");
                         }
                     }
                 }
@@ -638,7 +642,7 @@ public class HelloController {
                     resultsLabel.setText("Invalid placement");
                 }
             } else if (board[click1X][click1Y].getImage() != lblue) {
-                    board[click1X][click1Y] = new BoardSquare(click1X, click1Y, boardSquareNames[0], board[click1X][click1Y].getImage(), 1, selectedPiece);
+                    board[click1X][click1Y] = new BoardSquare(click1X, click1Y, boardSquareNames[0], board[click1X][click1Y].getImage(), playerTurn% 4 + 1, selectedPiece);
                     currentPlayers.get(playerTurn % 4).removePieces(selectedPiece);
             } else {
                 resultsLabel.setText("Invalid placement");
@@ -648,7 +652,7 @@ public class HelloController {
             BoardSquare second = board[click2X][click2Y];
             if (second.getHealth() == -1) {
                 if (first.getHealth() != -1){
-                    if (first.getPiece().getName().equals("fighter") || first.getPiece().getName().equals("bomber") || first.getPiece().getName().equals("silo") || first.getPiece().getName().equals("battleship") || first.getPiece().getName().equals("carrier") || first.getPiece().getName().equals("sub")) {
+                    if (first.getPiece().getName().equals("fighter") || first.getPiece().getName().equals("bomber") || first.getPiece().getName().equals("battleship") || first.getPiece().getName().equals("carrier") || first.getPiece().getName().equals("sub")) {
                         if (first.getPiece().getName().equals("battleship") || first.getPiece().getName().equals("carrier") || first.getPiece().getName().equals("sub")) {
                             if (board[click2X][click2Y].getImage() == lblue) {
                                 board[click2X][click2Y] = new BoardSquare(click2X, click2Y, board[click2X][click2Y].getName(), board[click2X][click2Y].getImage(), board[click1X][click1Y].getOwner(), board[click1X][click1Y].getPiece());
@@ -668,6 +672,12 @@ public class HelloController {
                     resultsLabel.setText("You can only move planes or ships and shoot missiles from silos");
                 }
             } else {
+                if (defconLevel <= 2) {
+                    if (first.getPiece().getName().equals("nuke")){
+                        attack(first, second);
+                        board[click1X][click1Y] = new BoardSquare(click1X, click1Y, board[click1X][click1Y].getName(), board[click1X][click1Y].getImage(), board[click1X][click1Y].getOwner(), -1);
+                    }
+                }
                 if (defconLevel <= 3) {
                     if (Math.abs(click1X - click2X) == 1 || Math.abs(click1Y - click2Y) == 1) {
                         attack(first, second);
@@ -681,17 +691,9 @@ public class HelloController {
     }
 
     private void attack(BoardSquare first, BoardSquare second) {
-        second.changeHealth(-1 * (int) (Math.random()*20) * first.getPiece().getPower());
-        second.setPopulation(second.getPopulation() - (int) (Math.random()*20) * first.getPiece().getPower());
-        if (second.getHealth()<= 0){
-            second.nullifyPiece();
-        }
-    }
-
-    private void attack(BoardPiece first, BoardSquare second) {
-        second.changeHealth(-1 *(int) (Math.random()*20) * first.getPower());
-        second.setPopulation(second.getPopulation() - (int) (Math.random()*20) * first.getPower());
-        if (second.getHealth()<= 0){
+        second.changeHealth(-1 * (int) (Math.random() * 20 + 1) * first.getPiece().getPower());
+        second.setPopulation(second.getPopulation() - (int) (Math.random() * 20) * first.getPiece().getPower());
+        if (second.getHealth() <= 0) {
             second.nullifyPiece();
         }
     }
@@ -757,11 +759,32 @@ public class HelloController {
             }
         }
 
+        gpane.setVisible(false);
+        piecesView.setVisible(false);
+        squareInfoView.setVisible(false);
+        startButton.setVisible(false);
+        clearButton.setVisible(false);
+        turnButton.setVisible(false);
+        timerLabel.setVisible(false);
+
+        if (p1pop > p2pop && p1pop > p3pop && p1pop > p4pop) {
+            resultsLabel.setText(currentPlayers.get(0).getName() + " is the winner");
+            System.out.println(currentPlayers.get(0).getName());
+        } else if (p2pop > p1pop && p2pop > p3pop && p2pop > p4pop) {
+            resultsLabel.setText(currentPlayers.get(1).getName() + " is the winner");
+        } else if (p1pop > p2pop && p1pop > p3pop && p1pop > p4pop) {
+            resultsLabel.setText(currentPlayers.get(2).getName() + " is the winner");
+        } else if (p1pop > p2pop && p1pop > p3pop && p1pop > p4pop) {
+            resultsLabel.setText(currentPlayers.get(3).getName() + " is the winner");
+        } else {
+            resultsLabel.setText("There was a tie, so Nobody is the winner");
+        }
 
     }
 
     public void turnChange() {
         playerTurn++;
         refreshGridPane();
+        resultsLabel.setText("It is " + currentPlayers.get(playerTurn%4).getName() + "'s turn");
     }
 }
